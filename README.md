@@ -1,72 +1,67 @@
 # Instant Canteen
 
-## Project Overview
+Instant Canteen is a mobile-oriented ordering prototype for campus canteens. Students can browse available items and place orders before break periods, while staff can maintain menus and process incoming orders.
 
-**Instant Canteen** is a modern web application designed to simplify payments and ordering prior at campus canteens and shops.Studnets can place orders from their phone during class hours and enjoy their orders while skipping long queues during peak rush hours like short break and lunch break, students use their mobile phones to scan a UPI QR code and pay instantly, eliminating the need for cash and providing a seamless transaction experience for both students and vendors.
+## Payment scope
 
-The ablity of Staff (canteen owners) to receive orders before rush hours allows them to prepare these orders and increase the overall sales that happen during the break time while also reducing the waiting time for students this coupled futher with a Staff dashboard allows them to dynamically change menu items,track and process orders.
+The interface can present or launch a UPI payment flow. A QR code or payment-app redirect alone does not prove settlement. Treat an order as paid only if the configured backend receives and verifies a trusted payment-provider confirmation.
 
-This project is built with a focus on a clean user interface, security, and performance.
+## Current stack
 
-## Visit now ~ https://instantcanteen.netlify.app
-## Key Features
+- React and TypeScript
+- Vite
+- Tailwind CSS
+- Supabase authentication and data access
 
-* **Quick Scan & Pay:** Instantly scan UPI QR codes to initiate payments.
-* **Intuitive UI:** A user-friendly interface optimized for mobile devices.
-* **Vendor Dashboard:** A separate dashboard for canteen owners to manage their details and update their UPI QR code.
-* **Transaction History:** (Future Feature) View a history of all payments made.
+## Main workflows
 
-## Technologies Used
+- Student authentication and menu browsing
+- Order creation
+- Staff menu management
+- Staff order review and status updates
+- UPI-oriented payment handoff
 
-* **Frontend:** React, TypeScript
-* **Styling:** Tailwind CSS
-* **Build Tool:** Vite
-* **Database & Auth:** Supabase (for user authentication and data management)
+The exact production status of payment verification and notification integrations should be confirmed before deployment.
 
-## Getting Started
+## Local setup
 
-### Prerequisites
+```bash
+git clone https://github.com/jeevanu345/Canteen-Management-Application.git
+cd Canteen-Management-Application
+npm install
+```
 
-* Node.js (v18 or higher)
-* npm
+Create an untracked `.env.local` file:
 
-### Installation and Setup
+```env
+VITE_SUPABASE_URL=your-project-url
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
 
-1.  **Clone the repository:**
-    ```sh
-    git clone https://github.com/haris-collab/Instant_Canteen.git
-    cd campus-pay-scan
-    ```
+Then run:
 
-2.  **Install dependencies:**
-    ```sh
-    npm install
-    ```
+```bash
+npm run dev
+```
 
-3.  **Set up Environment Variables:**
-    Create a `.env.local` file in the root of your project and add your Supabase credentials:
-    ```
-    VITE_SUPABASE_URL=YOUR_SUPABASE_URL
-    VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
-    ```
+The default Vite development URL is `http://localhost:5173`.
 
-4.  **Run the development server:**
-    ```sh
-    npm run dev
-    ```
+## Validation
 
-    The application will be available at `http://localhost:5173`.
+```bash
+npm run lint
+npm run build
+```
 
-## Deployment
+## Data and security considerations
 
-This project can be easily deployed to platforms like Vercel, Netlify, or AWS Amplify.
+- Enforce student and staff authorization in Supabase policies, not only in the UI.
+- Verify order ownership and allowed state transitions on trusted infrastructure.
+- Never expose service-role keys in Vite environment variables.
+- Use a payment-provider verification mechanism before representing an order as paid.
 
-### Example: Vercel
+## Current limitations
 
-1.  Push your code to a GitHub repository.
-2.  Log in to Vercel and import your project from Git.
-3.  Vercel will automatically detect the Vite setup and deploy the app.
-4.  Add your Supabase environment variables in the Vercel dashboard under "Settings > Environment Variables."
-
-
-
+- Automated tests are not documented.
+- Payment verification requires validation against the deployed configuration.
+- Schema migrations and seeded demo data are not yet documented at the repository root.
